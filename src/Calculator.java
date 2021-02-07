@@ -186,7 +186,6 @@ public class Calculator implements ActionListener, FocusListener, KeyListener {
      * Invoked to add either a FocusListener to JButtons
      * or an ActionListener and a KeyListener to JTextField.
      *
-     * @param e the event to be processed
      */
     private void addListeners() {
         Component[] components = rootPanel.getComponents();
