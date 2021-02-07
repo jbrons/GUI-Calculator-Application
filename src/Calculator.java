@@ -1,9 +1,7 @@
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 
 /**
  * This class implements a calculator for my CSC 4111 Assignment #2.
@@ -88,7 +86,6 @@ public class Calculator implements ActionListener, FocusListener, KeyListener {
 
         if (txtOperandFocus == txtOperand1) {
             operands.setOperand1(input);
-
         } else {
             operands.setOperand2(input);
         }
@@ -113,13 +110,13 @@ public class Calculator implements ActionListener, FocusListener, KeyListener {
             operations.setOperator(Operators.SQRT);
         } else if (userButton == btnResult) {
             operations.preformOperation();
+            operations.setOperator(null);
             txtResult.setText(outputFormat.format(Double.valueOf(operands.getResult())).toString());
         } else if (userButton == btnClear) {
             operations.setOperator(null);
             txtOperand1.setText("");
             txtOperand2.setText("");
-            txtResult.setText("");
-            btnResult.setEnabled(false);
+            txtResult.setText("");;
             txtOperand1.requestFocus();
         } else {
             setUserInput(e.getActionCommand());
@@ -127,6 +124,9 @@ public class Calculator implements ActionListener, FocusListener, KeyListener {
 
         if (operands.areOperandsActive() && (operations.getOperator() != null)) {
             btnResult.setEnabled(true);
+        }
+        else {
+            btnResult.setEnabled(false);
         }
     }
 
@@ -157,9 +157,7 @@ public class Calculator implements ActionListener, FocusListener, KeyListener {
      */
     @Override
     public void keyTyped(KeyEvent e) {
-        e.consume(); // Stop the event from propagating.
-        //txtOperandFocus.setText(txtOperandFocus.getText());
-        //txtOperandFocus.setText("");
+        e.consume();
     }
 
     /**
@@ -170,9 +168,7 @@ public class Calculator implements ActionListener, FocusListener, KeyListener {
      * @param e the event to be processed
      */
     @Override
-    public void keyPressed(KeyEvent e) {
-        //e.consume();
-    }
+    public void keyPressed(KeyEvent e) {}
 
     /**
      * Invoked when a key has been released.
